@@ -9,6 +9,19 @@ namespace VaultSharp.V1.SecretsEngines.Transit
     public interface ITransitSecretsEngine
     {
         /// <summary>
+        /// This endpoint returns a list of keys. 
+        /// Only the key names are returned (not the actual keys themselves).
+        /// </summary>
+        /// <param name="mountPoint"><para>[optional]</para>
+        /// The mount point for the Transit backend. Defaults to <see cref="SecretsEngineDefaultPaths.Transit" />
+        /// Provide a value only if you have customized the mount point.
+        /// </param>
+        /// <returns>
+        /// The key names.
+        /// </returns>
+        Task<Secret<ListResponse>> ListAsync(string mountPoint = SecretsEngineDefaultPaths.Transit);
+
+        /// <summary>
         /// Encrypts the provided plaintext using the named key.
         /// This path supports the create and update policy capabilities as follows: 
         /// if the user has the create capability for this endpoint in their policies, 
