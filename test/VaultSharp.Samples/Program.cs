@@ -59,11 +59,11 @@ namespace VaultSharp.Samples
         private static void RunAllSamples()
         {
             // before runnig these tests, just start your local vault server with a file backend.
-            
+
             // startvault.cmd OR these 2 lines.
             // rd E:\raja\work\vault\file_backend /S /Q
             // vault server -config E:\raja\work\vault\f.hcl
-            
+
             // f.hcl looks like
             /*
                 backend "file" {
@@ -192,7 +192,7 @@ namespace VaultSharp.Samples
 
             if (keyNames.Length > 0)
             {
-                var keyName = keyNames[0];                
+                var keyName = keyNames[0];
 
                 var context = "context1";
                 var plainText = "raja";
@@ -326,11 +326,11 @@ namespace VaultSharp.Samples
             Assert.True(paths2.Data.Keys.Count() == 1);
 
             var kv2metadata = _authenticatedVaultClient.V1.Secrets.KeyValue.V2.ReadSecretMetadataAsync(path, mountPoint: kv2SecretsEngine.Path).Result;
-            Assert.True(kv2metadata.Data.CurrentVersion > 0); 
+            Assert.True(kv2metadata.Data.CurrentVersion > 0);
 
             _authenticatedVaultClient.V1.Secrets.KeyValue.V2.DestroySecretAsync(path, new List<int> { kv2metadata.Data.CurrentVersion }, mountPoint: kv2SecretsEngine.Path).Wait();
 
-            _authenticatedVaultClient.V1.System.UnmountSecretBackendAsync(kv2SecretsEngine.Path).Wait();         
+            _authenticatedVaultClient.V1.System.UnmountSecretBackendAsync(kv2SecretsEngine.Path).Wait();
         }
 
         private static void RunSystemBackendSamples()
@@ -1056,7 +1056,7 @@ namespace VaultSharp.Samples
                 rekeyStatus = _unauthenticatedVaultClient.V1.System.GetRekeyStatusAsync().Result;
                 DisplayJson(rekeyStatus);
                 Assert.True(rekeyStatus.Started);
-                Assert.True(rekeyStatus.UnsealKeysProvided == (j+1));
+                Assert.True(rekeyStatus.UnsealKeysProvided == (j + 1));
             }
 
             rekeyProgress = _unauthenticatedVaultClient.V1.System.ContinueRekeyAsync(masterCredentials.MasterKeys[j], rekeyNonce).Result;
