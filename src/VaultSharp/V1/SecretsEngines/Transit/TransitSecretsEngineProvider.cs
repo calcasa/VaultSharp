@@ -14,9 +14,9 @@ namespace VaultSharp.V1.SecretsEngines.Transit
             _polymath = polymath;
         }
 
-        public async Task<Secret<ListResponse>> ListAsync(string mountPoint = SecretsEngineDefaultPaths.Transit)
+        public async Task<Secret<ListResponse>> ListAsync(string mountPoint = SecretsEngineDefaultPaths.Transit, string wrapTimeToLive = null)
         {
-            return await _polymath.MakeVaultApiRequest<Secret<ListResponse>>("v1/" + mountPoint.Trim('/') + "/keys", new HttpMethod("LIST")).ConfigureAwait(_polymath.VaultClientSettings.ContinueAsyncTasksOnCapturedContext);
+            return await _polymath.MakeVaultApiRequest<Secret<ListResponse>>("v1/" + mountPoint.Trim('/') + "/keys", new HttpMethod("LIST"), wrapTimeToLive: wrapTimeToLive).ConfigureAwait(_polymath.VaultClientSettings.ContinueAsyncTasksOnCapturedContext);
         }
 
         public async Task<Secret<EncryptionResponse>> EncryptAsync(string keyName, EncryptRequestOptions encryptRequestOptions, string mountPoint = SecretsEngineDefaultPaths.Transit, string wrapTimeToLive = null)

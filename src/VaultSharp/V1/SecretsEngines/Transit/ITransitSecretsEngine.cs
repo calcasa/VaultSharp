@@ -16,10 +16,14 @@ namespace VaultSharp.V1.SecretsEngines.Transit
         /// The mount point for the Transit backend. Defaults to <see cref="SecretsEngineDefaultPaths.Transit" />
         /// Provide a value only if you have customized the mount point.
         /// </param>
+        /// /// <param name="wrapTimeToLive">
+        /// <para>[optional]</para>
+        /// The TTL for the token and can be either an integer number of seconds or a string duration of seconds.
+        /// </param>
         /// <returns>
         /// The key names.
         /// </returns>
-        Task<Secret<ListResponse>> ListAsync(string mountPoint = SecretsEngineDefaultPaths.Transit);
+        Task<Secret<ListResponse>> ListAsync(string mountPoint = SecretsEngineDefaultPaths.Transit, string wrapTimeToLive = null);
 
         /// <summary>
         /// Encrypts the provided plaintext using the named key.
