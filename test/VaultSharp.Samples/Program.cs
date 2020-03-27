@@ -217,11 +217,11 @@ namespace VaultSharp.Samples
                 encryptOptions = new EncryptRequestOptions
                 {
                     BatchedEncryptionItems = new List<EncryptionItem>
-                {
-                    new EncryptionItem { Base64EncodedContext = encodedContext, Base64EncodedPlainText = encodedPlainText },
-                    new EncryptionItem { Base64EncodedContext = encodedContext, Base64EncodedPlainText = encodedPlainText },
-                    new EncryptionItem { Base64EncodedContext = encodedContext, Base64EncodedPlainText = encodedPlainText },
-                },
+                    {
+                        new EncryptionItem { Base64EncodedContext = encodedContext, Base64EncodedPlainText = encodedPlainText },
+                        new EncryptionItem { Base64EncodedContext = encodedContext, Base64EncodedPlainText = encodedPlainText },
+                        new EncryptionItem { Base64EncodedContext = encodedContext, Base64EncodedPlainText = encodedPlainText },
+                    },
                     KeyVersion = 1
                 };
 
@@ -242,11 +242,11 @@ namespace VaultSharp.Samples
                 rewrapOptions = new RewrapRequestOptions
                 {
                     BatchedRewrapItems = new List<RewrapItem>
-                {
-                    new RewrapItem { Base64EncodedContext = encodedContext, CipherText = batchedEncryptionResponse.Data.BatchedResults.ElementAt(0).CipherText },
-                    new RewrapItem { Base64EncodedContext = encodedContext, CipherText = batchedEncryptionResponse.Data.BatchedResults.ElementAt(1).CipherText },
-                    new RewrapItem { Base64EncodedContext = encodedContext, CipherText = batchedEncryptionResponse.Data.BatchedResults.ElementAt(2).CipherText },
-                }
+                    {
+                        new RewrapItem { Base64EncodedContext = encodedContext, CipherText = batchedEncryptionResponse.Data.BatchedResults.ElementAt(0).CipherText },
+                        new RewrapItem { Base64EncodedContext = encodedContext, CipherText = batchedEncryptionResponse.Data.BatchedResults.ElementAt(1).CipherText },
+                        new RewrapItem { Base64EncodedContext = encodedContext, CipherText = batchedEncryptionResponse.Data.BatchedResults.ElementAt(2).CipherText },
+                    }
                 };
 
                 var batchedRewrapResponse = _authenticatedVaultClient.V1.Secrets.Transit.RewrapAsync(keyName, rewrapOptions).Result;
@@ -265,11 +265,11 @@ namespace VaultSharp.Samples
                 decryptOptions = new DecryptRequestOptions
                 {
                     BatchedDecryptionItems = new List<DecryptionItem>
-                {
-                    new DecryptionItem { Base64EncodedContext = encodedContext, CipherText = batchedEncryptionResponse.Data.BatchedResults.ElementAt(0).CipherText },
-                    new DecryptionItem { Base64EncodedContext = encodedContext, CipherText = batchedEncryptionResponse.Data.BatchedResults.ElementAt(1).CipherText },
-                    new DecryptionItem { Base64EncodedContext = encodedContext, CipherText = batchedEncryptionResponse.Data.BatchedResults.ElementAt(2).CipherText },
-                }
+                    {
+                        new DecryptionItem { Base64EncodedContext = encodedContext, CipherText = batchedEncryptionResponse.Data.BatchedResults.ElementAt(0).CipherText },
+                        new DecryptionItem { Base64EncodedContext = encodedContext, CipherText = batchedEncryptionResponse.Data.BatchedResults.ElementAt(1).CipherText },
+                        new DecryptionItem { Base64EncodedContext = encodedContext, CipherText = batchedEncryptionResponse.Data.BatchedResults.ElementAt(2).CipherText },
+                    }
                 };
 
                 var batchedDecryptionResponse = _authenticatedVaultClient.V1.Secrets.Transit.DecryptAsync(keyName, decryptOptions).Result;
