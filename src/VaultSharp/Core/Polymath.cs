@@ -126,6 +126,9 @@ namespace VaultSharp.Core
                     httpRequestMessage.Content = requestContent; 
                 }
 
+                if (httpMethod != HttpMethod.Post && httpMethod != HttpMethod.Put && httpMethod != HttpMethod.Options && httpMethod != HttpMethod.Get && !string.Equals(httpMethod.Method, "LIST", StringComparison.OrdinalIgnoreCase))
+                    throw new NotSupportedException("The Http Method is not supported: " + httpMethod);
+
                 if (headers != null)
                 {
                     foreach (var kv in headers)
